@@ -5,7 +5,7 @@
 struct card
 {
     int value;
-    std::string suit;
+    int suit;
     std::string name;
     int counter;
 };
@@ -36,7 +36,7 @@ class Blackjack
 {
 private:
 dealer Dealer;
-std::vector<card> deck;
+std::vector<card*> deck;
 std::vector<player> players;
 int cardCounter;
 
@@ -44,6 +44,7 @@ public:
     Blackjack();
     ~Blackjack();
     void buildDeck(int deckNumber);//random number of 52 card decks shuffled
+    void shuffleDeck(int deckNumber);
     void createPlayers(int playerNumber);//random orientation players created
     void Deal();
     void HitMe();

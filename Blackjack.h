@@ -1,6 +1,7 @@
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
-
+#include <string>
+#include <vector>
 struct card
 {
     int value;
@@ -14,12 +15,12 @@ struct player
     std::string name;
     int orientation;//1 defensive, 2 normal, 3 aggressive playstyle
     int handValue;
-    vector<card> hand;
+    std::vector<card> hand;
     int totalMoney;
     int bet;
     bool isSplit;
     int handValue2 = 0;
-    vector<card> hand2;
+    std::vector<card> hand2;
     int bet2 = 0;
     bool stand = false;
 };
@@ -27,7 +28,7 @@ struct player
 struct dealer
 {
     int handValue;
-    vector<card> hand;
+    std::vector<card> hand;
     bool stand = false;
 };
 
@@ -35,11 +36,13 @@ class Blackjack
 {
 private:
 dealer Dealer;
-vector<card> deck;
-vector<player> players;
+std::vector<card> deck;
+std::vector<player> players;
 int cardCounter;
 
 public:
+    Blackjack();
+    ~Blackjack();
     void buildDeck(int deckNumber);//random number of 52 card decks shuffled
     void createPlayers(int playerNumber);//random orientation players created
     void Deal();

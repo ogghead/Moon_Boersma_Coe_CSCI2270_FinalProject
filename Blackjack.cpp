@@ -21,16 +21,15 @@ Blackjack::~Blackjack()
 
 void Blackjack::buildDeck(int deckNumber){
     for (int s = 0; s < deckNumber; s++){
-        for(int k=0;k<52;k++){
-            for(int i=0;i<4;i++){
-                for(int j=0; j<13;j++){
-                    card *newCard = new card;
-                    newCard->suit=i;
-
-                    if (j+1 == 1){
-                        newCard->value = 11;
-                        newCard->name = "Ace";
-                    }
+ 
+        for(int i=0;i<4;i++){
+            for(int j=0; j<13;j++){
+                card *newCard = new card;
+                newCard->suit=i;
+                if (j+1 == 1){
+                    newCard->value = 11;
+                    newCard->name = "Ace";
+                }
                     else if (j+1 == 2){
                         newCard->value = j + 1;
                         newCard->name = "Two";
@@ -85,15 +84,11 @@ void Blackjack::buildDeck(int deckNumber){
             }
         }
     }
-}
+
 
 void Blackjack::shuffleDeck(int deckNumber){
     srand(time(NULL));
     random_shuffle(deck.begin(),deck.end());
-    cout<<deck[0]->name << endl;
-    cout<<deck[20]->name << endl;
-    cout<< deck[51]->name<<endl;
-    //deck.pop_back();
-    cout<<(deck.size())-(2652*deckNumber)<<endl;
+    
 }
 

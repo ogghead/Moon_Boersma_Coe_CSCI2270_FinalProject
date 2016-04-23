@@ -110,3 +110,7 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     deck.pop_back();
     delete tmp;
 }
+
+bool Blackjack::Stand(){
+    return true;
+}

@@ -15,14 +15,15 @@ struct player
     std::string name;
     int orientation;//1 defensive, 2 normal, 3 aggressive playstyle
     int handValue;
-    std::vector<card> hand;
+    std::vector<card*> hand;
     int totalMoney;
     int bet;
     bool isSplit;
     int handValue2 = 0;
-    std::vector<card> hand2;
+    std::vector<card*> hand2;
     int bet2 = 0;
     bool stand = false;
+    bool stand2 = false;
 };
 
 struct dealer
@@ -37,7 +38,7 @@ class Blackjack
 private:
     dealer Dealer;
     std::vector<card*> deck;
-    std::vector<player> players;
+    std::vector<player*> players;
     int cardCounter;
 
 public:
@@ -47,7 +48,7 @@ public:
     void shuffleDeck(int deckNumber);
     void createPlayers(int playerNumber);//random orientation players created
     void Deal();
-    void HitMe();
+    void HitMe(player* currentPlayer, bool secondHand);
     void Stand();
     void Split();
     void DoubleDown();

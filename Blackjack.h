@@ -35,10 +35,10 @@ struct dealer
 class Blackjack
 {
 private:
-dealer Dealer;
-std::vector<card*> deck;
-std::vector<player> players;
-int cardCounter;
+    dealer Dealer;
+    std::vector<card*> deck;
+    std::vector<player> players;
+    int cardCounter;
 
 public:
     Blackjack();

@@ -21,7 +21,7 @@ Blackjack::~Blackjack()
 
 void Blackjack::buildDeck(int deckNumber){
     for (int s = 0; s < deckNumber; s++){
- 
+
         for(int i=0;i<4;i++){
             for(int j=0; j<13;j++){
                 card *newCard = new card;
@@ -89,6 +89,24 @@ void Blackjack::buildDeck(int deckNumber){
 void Blackjack::shuffleDeck(int deckNumber){
     srand(time(NULL));
     random_shuffle(deck.begin(),deck.end());
-    
+
 }
 
+void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean checks
+//if the hand to deal to is the 2nd one, if a player has split
+{
+    int index = deck.size() - 1;
+    card* tmp = deck[index];
+
+    if (secondHand == false)
+    {
+        currentPlayer->hand.push_back(tmp);
+    }
+
+    else
+    {
+        currentPlayer->hand2.push_back(tmp);
+    }
+    deck.pop_back();
+    delete tmp;
+}

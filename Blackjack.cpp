@@ -116,7 +116,7 @@ bool Blackjack::Stand()
     return true;
 }
 
-void createPlayers(int playerNumber)
+void Blackjack::createPlayers(int playerNumber)
 {
     player* me = new player;
     me->orientation = 0;

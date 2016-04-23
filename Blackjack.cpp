@@ -111,6 +111,26 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     delete tmp;
 }
 
-bool Blackjack::Stand(){
+bool Blackjack::Stand()
+{
     return true;
+}
+
+void Blackjack::createPlayers(int playerNumber)
+{
+    player* me = new player;
+    me->orientation = 0;
+    me->totalMoney = 1000;
+
+    players.push_back(me);
+
+    srand(time(NULL));
+
+    for(int i = 1; i < playerNumber; i++)
+    {
+        player* newAI = new player;
+        newAI->orientation = rand() % 4 + 1;
+        newAI->totalMoney = 1000;
+        players.push_back(newAI);
+    }
 }

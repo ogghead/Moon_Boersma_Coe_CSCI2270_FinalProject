@@ -52,7 +52,7 @@ public:
     void Stand(player* currentPlayer);
     void Stand2(player* currentPlayer);
     void Split(player* myPlayer);
-    void DoubleDown();
+    void doubleDown(player* myPlayer);
     void addCardCount(int counter);
     int displayCardCounter();
     bool ai(player*);

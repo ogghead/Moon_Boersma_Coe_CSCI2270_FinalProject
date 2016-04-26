@@ -245,3 +245,10 @@ int Blackjack::displayCardCounter()
 {
     return cardCounter;
 }
+
+void Blackjack::doubleDown(player* myPlayer)
+{
+    HitMe(myPlayer,false);
+    myPlayer->bet = myPlayer->bet * 2;
+    Stand(myPlayer);
+}

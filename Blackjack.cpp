@@ -231,5 +231,7 @@ void Blackjack::Split(player* myPlayer)
     myPlayer->hand2.push_back(tmp);
     myPlayer->handValue = myPlayer->handValue - tmp->value;
     myPlayer->handValue2 = tmp->value;
+    HitMe(myPlayer,true);
+    HitMe(myPlayer,false);
     myPlayer->bet2 = myPlayer->bet;
 }

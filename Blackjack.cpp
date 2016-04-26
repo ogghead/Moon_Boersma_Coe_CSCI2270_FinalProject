@@ -143,6 +143,9 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
         else
         {
         currentPlayer->handValue=currentPlayer->handValue + tmp->value;
+         if(currentPlayer->handValue>21){
+             currentPlayer->stand=true;
+         }
         }
     }
 
@@ -154,6 +157,9 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
         }else{
         currentPlayer->handValue2=currentPlayer->handValue2 + tmp->value;
         }
+         if(currentPlayer->handValue2>21){
+             currentPlayer->stand2=true;
+         }
     }
 
 

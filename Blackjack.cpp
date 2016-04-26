@@ -21,16 +21,15 @@ Blackjack::~Blackjack()
 
 void Blackjack::buildDeck(int deckNumber){
     for (int s = 0; s < deckNumber; s++){
-        for(int k=0;k<52;k++){
-            for(int i=0;i<4;i++){
-                for(int j=0; j<13;j++){
-                    card *newCard = new card;
-                    newCard->suit=i;
 
-                    if (j+1 == 1){
-                        newCard->value = 11;
-                        newCard->name = "Ace";
-                    }
+        for(int i=0;i<4;i++){
+            for(int j=0; j<13;j++){
+                card *newCard = new card;
+                newCard->suit=i;
+                if (j+1 == 1){
+                    newCard->value = 11;
+                    newCard->name = "Ace";
+                }
                     else if (j+1 == 2){
                         newCard->value = j + 1;
                         newCard->name = "Two";
@@ -85,15 +84,84 @@ void Blackjack::buildDeck(int deckNumber){
             }
         }
     }
-}
+
 
 void Blackjack::shuffleDeck(int deckNumber){
     srand(time(NULL));
     random_shuffle(deck.begin(),deck.end());
-    cout<<deck[0]->name << endl;
-    cout<<deck[20]->name << endl;
-    cout<< deck[51]->name<<endl;
-    //deck.pop_back();
-    cout<<(deck.size())-(2652*deckNumber)<<endl;
+
 }
 
+void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean checks
+//if the hand to deal to is the 2nd one, if a player has split
+{
+    int index = deck.size() - 1;
+    card* tmp = deck[index];
+
+    if (secondHand == false)
+    {
+        currentPlayer->hand.push_back(tmp);
+        currentPlayer->handValue = tmp->value;
+    }
+
+    else
+    {
+        currentPlayer->hand2.push_back(tmp);
+        currentPlayer->handValue2 = tmp->value;
+
+    }
+    deck.pop_back();
+    delete tmp;
+
+    if (tmp->value == 2 || tmp->value == 3 || tmp->value == 4 ||
+        tmp->value == 5 || tmp->value == 6)
+        {
+            cardCounter = cardCounter + 1;
+        }
+    else if (tmp->value == 7 || tmp->value == 8 || tmp->value == 9)
+        {
+            cardCounter = cardCounter;
+        }
+    else if (tmp->value == 10)
+        {
+            cardCounter = cardCounter - 1;
+        }
+}
+
+bool Blackjack::Stand()
+{
+    return true;
+}
+
+void Blackjack::createPlayers(int playerNumber)
+{
+    player* me = new player;
+    me->orientation = 0;
+    me->totalMoney = 1000;
+
+    players.push_back(me);
+
+    srand(time(NULL));
+
+    for(int i = 1; i < playerNumber; i++)
+    {
+        player* newAI = new player;
+        newAI->orientation = rand() % 4 + 1;
+        newAI->totalMoney = 1000;
+        players.push_back(newAI);
+    }
+}
+
+vector <player*> Blackjack::returnPlayers()
+{
+    return players;
+}
+
+void Blackjack::Deal()
+{
+    for (int i = 0; i < players.size(); i++)
+    {
+        HitMe(players[i], false);
+        HitMe(players[i], false);
+    }
+}

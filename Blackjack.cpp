@@ -134,3 +134,8 @@ void Blackjack::createPlayers(int playerNumber)
         players.push_back(newAI);
     }
 }
+
+vector <player*> Blackjack::returnPlayers()
+{
+    return players;
+}

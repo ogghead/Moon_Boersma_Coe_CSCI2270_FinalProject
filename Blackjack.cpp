@@ -136,25 +136,27 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     if (secondHand == false)
     {
         currentPlayer->hand.push_back(tmp);
-        if((temp->value==11)&&(currentPlayer->handValue+11 > 21)){
-            currentPlayer->handValue=currentPlayer->handValue+1;           
-        }else{
+        if((tmp->value==11)&&(currentPlayer->handValue+11 > 21))
+        {
+            currentPlayer->handValue=currentPlayer->handValue+1;
+        }
+        else
+        {
         currentPlayer->handValue=currentPlayer->handValue + tmp->value;
         }
-            
-        }
+    }
 
     else
     {
         currentPlayer->hand2.push_back(tmp);
-        if((temp->value==11)&&(currentPlayer->handValue2+11 > 21)){
-            currentPlayer->handValue2=currentPlayer->handValue2+1;           
+        if((tmp->value==11)&&(currentPlayer->handValue2+11 > 21)){
+            currentPlayer->handValue2=currentPlayer->handValue2+1;
         }else{
         currentPlayer->handValue2=currentPlayer->handValue2 + tmp->value;
         }
     }
- 
-    
+
+
     if (tmp->value == 2 || tmp->value == 3 || tmp->value == 4 ||
         tmp->value == 5 || tmp->value == 6)
         {
@@ -214,4 +216,14 @@ void Blackjack::Stand(player* currentPlayer)
 void Blackjack::Stand2(player* currentPlayer)
 {
     currentPlayer->stand2 = true;
+}
+
+void Blackjack::Split(player* myPlayer)
+{
+    card* tmp = myPlayer->hand[1];
+    myPlayer->hand.pop_back();
+    myPlayer->hand2.push_back(tmp);
+    myPlayer->handValue = myPlayer->handValue - tmp->value;
+    myPlayer->handValue2 = tmp->value;
+    myPlayer->bet2 = myPlayer->bet;
 }

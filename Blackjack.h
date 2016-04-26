@@ -23,7 +23,6 @@ struct player
     std::vector<card*> hand2;
     int bet2 = 0;
     bool stand = false;
-    
     bool stand2 = false;
 };
 
@@ -52,11 +51,10 @@ public:
     void HitMe(player* currentPlayer, bool secondHand);
     void Stand(player* currentPlayer);
     void Stand2(player* currentPlayer);
-    void Split();
+    void Split(player* myPlayer);
     void DoubleDown();
     void addCardCount(int counter);
     int displayCardCounter();
-    void newRound();
     bool ai(player*);
     std::vector <player*> returnPlayers();
 };

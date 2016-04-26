@@ -139,3 +139,12 @@ vector <player*> Blackjack::returnPlayers()
 {
     return players;
 }
+
+void Blackjack::Deal()
+{
+    for (int i = 0; i < players.size(); i++)
+    {
+        HitMe(players[i], false);
+        HitMe(players[i], false);
+    }
+}

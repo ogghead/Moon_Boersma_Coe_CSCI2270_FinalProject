@@ -57,6 +57,7 @@ public:
     int displayCardCounter();
     bool ai(player*);
     std::vector <player*> returnPlayers();
+    void Bet(player* currentPlayer, int bet);
 };
 
 

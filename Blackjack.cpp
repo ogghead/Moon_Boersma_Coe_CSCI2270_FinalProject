@@ -92,6 +92,41 @@ void Blackjack::shuffleDeck(int deckNumber){
 
 }
 
+bool Blackjack::ai(player * player){
+    int ori=player->orientation;
+        while(player->stand==false){
+            if(ori==0){
+                break;
+            }
+
+            else if(ori==2){
+                if(player->handValue < 17){
+                    HitMe(player,false);
+                }
+            if(player->handValue >= 17){
+                Stand(player);
+                }
+            }
+            else if(ori==1){
+                if(player->handValue < 16){
+                    HitMe(player,false);
+                }
+                if(player->handValue >= 16){
+                    Stand(player);
+                }
+            }
+
+            else if(ori==3){
+                if(player->handValue < 18){
+                    HitMe(player,false);
+                }
+                if(player->handValue >= 18){
+                    Stand(player);
+                }
+            }
+        }
+    }
+
 void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean checks
 //if the hand to deal to is the 2nd one, if a player has split
 {

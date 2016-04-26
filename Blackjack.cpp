@@ -111,11 +111,6 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     delete tmp;
 }
 
-bool Blackjack::Stand()
-{
-    return true;
-}
-
 void Blackjack::createPlayers(int playerNumber)
 {
     player* me = new player;
@@ -147,4 +142,14 @@ void Blackjack::Deal()
         HitMe(players[i], false);
         HitMe(players[i], false);
     }
+}
+
+void Blackjack::Stand(player* currentPlayer)
+{
+    currentPlayer->stand = true;
+}
+
+void Blackjack::Stand2(player* currentPlayer)
+{
+    currentPlayer->stand2 = true;
 }

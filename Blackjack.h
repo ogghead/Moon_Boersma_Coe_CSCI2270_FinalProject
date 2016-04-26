@@ -49,7 +49,8 @@ public:
     void createPlayers(int playerNumber);//random orientation players created
     void Deal();
     void HitMe(player* currentPlayer, bool secondHand);
-    bool Stand();
+    void Stand(player* currentPlayer);
+    void Stand2(player* currentPlayer);
     void Split();
     void DoubleDown();
     void addCardCount(int counter);

@@ -23,6 +23,7 @@ struct player
     std::vector<card*> hand2;
     int bet2 = 0;
     bool stand = false;
+    
     bool stand2 = false;
 };
 

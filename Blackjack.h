@@ -57,7 +57,7 @@ public:
     void addCardCount(int counter);
     int displayCardCounter();
     void newRound();
-     bool ai(player*);
+    bool ai(player*);
     std::vector <player*> returnPlayers();
 };
 

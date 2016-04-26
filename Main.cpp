@@ -12,5 +12,6 @@ int main()
     Blackjack myGame;
     myGame.buildDeck(1);
     myGame.shuffleDeck(1);
+    myGame.Deal();
     return 0;
 }

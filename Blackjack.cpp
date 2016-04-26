@@ -101,14 +101,31 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     if (secondHand == false)
     {
         currentPlayer->hand.push_back(tmp);
+        currentPlayer->handValue = tmp->value;
     }
 
     else
     {
         currentPlayer->hand2.push_back(tmp);
+        currentPlayer->handValue2 = tmp->value;
+
     }
     deck.pop_back();
     delete tmp;
+
+    if (tmp->value == 2 || tmp->value == 3 || tmp->value == 4 ||
+        tmp->value == 5 || tmp->value == 6)
+        {
+            cardCounter = cardCounter + 1;
+        }
+    else if (tmp->value == 7 || tmp->value == 8 || tmp->value == 9)
+        {
+            cardCounter = cardCounter;
+        }
+    else if (tmp->value == 10)
+        {
+            cardCounter = cardCounter - 1;
+        }
 }
 
 bool Blackjack::Stand()

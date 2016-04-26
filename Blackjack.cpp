@@ -235,3 +235,8 @@ void Blackjack::Split(player* myPlayer)
     HitMe(myPlayer,false);
     myPlayer->bet2 = myPlayer->bet;
 }
+
+void Blackjack::Bet(player* currentPlayer, int bet)
+{
+    currentPlayer->bet = bet;
+}

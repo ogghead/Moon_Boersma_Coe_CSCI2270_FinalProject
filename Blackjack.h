@@ -6,6 +6,7 @@ struct card
 {
     int value;
     int suit;
+    std::string sui;
     std::string name;
     int counter;
 };
@@ -26,20 +27,14 @@ struct player
     bool stand2 = false;
 };
 
-struct dealer
-{
-    int handValue;
-    std::vector<card> hand;
-    bool stand = false;
-};
+
 
 class Blackjack
 {
 private:
-    dealer Dealer;
     std::vector<card*> deck;
     std::vector<player*> players;
-    int cardCounter;
+    int cardCounter=0;
 
 public:
     Blackjack();
@@ -48,6 +43,7 @@ public:
     void shuffleDeck(int deckNumber);
     void createPlayers(int playerNumber);//random orientation players created
     void Deal();
+    void show();
     void HitMe(player* currentPlayer, bool secondHand);
     void Stand(player* currentPlayer);
     void Stand2(player* currentPlayer);
@@ -55,9 +51,13 @@ public:
     void doubleDown(player* myPlayer);
     void addCardCount(int counter);
     int displayCardCounter();
-    bool ai(player*);
+    void ai(player*);
     std::vector <player*> returnPlayers();
-    void Bet(player* currentPlayer, int bet);
+    void Bet(int bet);
+    void Round();
+    void Reset();
+    player* returnPlayer();
+    player* returnDealer();
 };
 
 

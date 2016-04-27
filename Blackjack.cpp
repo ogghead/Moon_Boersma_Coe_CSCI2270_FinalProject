@@ -26,6 +26,13 @@ void Blackjack::buildDeck(int deckNumber){
             for(int j=0; j<13;j++){
                 card *newCard = new card;
                 newCard->suit=i;
+                if(i==0){
+                    newCard->sui="Hearts";
+                }
+                else if(i==1){newCard->sui="Clubs";}
+                else if(i==2){newCard->sui="Diamonds";}
+                else if(i==3){newCard->sui="Spades";}
+
                 if (j+1 == 1){
                     newCard->value = 11;
                     newCard->name = "Ace";
@@ -78,7 +85,8 @@ void Blackjack::buildDeck(int deckNumber){
                         newCard->value = 10;
                         newCard->name = "King";
                     }
-                    //cout<<newCard->name<<endl;
+                    //cout<<newCard->name<< " " << newCard->sui<<endl;
+
                     deck.push_back(newCard);
                 }
             }
@@ -92,7 +100,7 @@ void Blackjack::shuffleDeck(int deckNumber){
 
 }
 
-bool Blackjack::ai(player * player){
+void Blackjack::ai(player * player){
     int ori=player->orientation;
         while(player->stand==false){
             if(ori==0){
@@ -177,7 +185,7 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
             cardCounter = cardCounter - 1;
         }
     deck.pop_back();
-    delete tmp;
+    //delete tmp;
 
 }
 
@@ -191,6 +199,10 @@ void Blackjack::createPlayers(int playerNumber)
 
     srand(time(NULL));
 
+    player* newAI = new player;
+    newAI->orientation = 2;
+    players.push_back(newAI);
+
     for(int i = 1; i < playerNumber; i++)
     {
         player* newAI = new player;
@@ -199,6 +211,7 @@ void Blackjack::createPlayers(int playerNumber)
         players.push_back(newAI);
     }
 }
+
 
 vector <player*> Blackjack::returnPlayers()
 {
@@ -236,9 +249,22 @@ void Blackjack::Split(player* myPlayer)
     myPlayer->bet2 = myPlayer->bet;
 }
 
-void Blackjack::Bet(player* currentPlayer, int bet)
+void Blackjack::Bet(int bet)
 {
-    currentPlayer->bet = bet;
+    player* player = players[0];
+    int minVal = 10;
+    if (bet > player->totalMoney || bet < minVal)
+    {
+            string betN;
+            int betNew=0;
+            cout<<"That is an invalid bet"<<endl;
+        cout<<"How much would you like to bet?"<<endl;
+        getline(cin,betN);
+        betNew=stoi(betN);
+        Bet(betNew);
+    }else{
+    player->bet = bet;
+    }
 }
 
 int Blackjack::displayCardCounter()
@@ -251,4 +277,47 @@ void Blackjack::doubleDown(player* myPlayer)
     HitMe(myPlayer,false);
     myPlayer->bet = myPlayer->bet * 2;
     Stand(myPlayer);
+}
+
+void Blackjack::Round(){
+    for (int i = 1; i < players.size(); i++){
+        ai(players[i]);
+    }
+}
+
+void Blackjack::Reset(){
+    for (int i = 0; i < players.size(); i++){
+        players[i]->handValue = 0;
+        players[i]->handValue = 0;
+        players[i]->bet = 0;
+        players[i]->bet2 = 0;
+        while (players[i]->hand.size() != 0){
+            players[i]->hand.pop_back();
+        }
+        while (players[i]->hand2.size() != 0){
+            players[i]->hand2.pop_back();
+        }
+        players[i]->stand = false;
+        players[i]->stand2 = false;
+        players[i]->isSplit = false;
+    }
+}
+
+player* Blackjack::returnPlayer()
+{
+    return players[0];
+}
+void Blackjack::show(){
+for(int z=2;z< players.size();z++){
+        cout<<"Player "<< z << " has: "<<endl;
+    for (int i = 0; i < players[z]->hand.size();i++)
+            {
+                cout << players[z]->hand[i]->name << " of " << players[z]->hand[i]->sui << endl;
+            }
+            cout << endl;
+    }
+}
+player* Blackjack::returnDealer()
+{
+    return players[1];
 }

@@ -119,7 +119,6 @@ int main()
             }
         }
         myGame.Round();
-cout<<"F"<<endl;
         myGame.show();
      cout << "The dealer had: " << endl;
         for (int i = 0; i < dealer->hand.size();i++)

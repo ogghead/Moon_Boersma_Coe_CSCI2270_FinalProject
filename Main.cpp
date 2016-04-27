@@ -32,8 +32,11 @@ int main()
     myGame.createPlayers(players);
 
     bool Quit = false;
+     player* me = myGame.returnPlayer();
+        player* dealer = myGame.returnDealer();
     while (!Quit)
     {
+        myGame.Reset();
         string bet;
         cout<<"Buy-in is 10, max bet is 1000."<<endl;
         cout<<"How much would you like to bet?"<<endl;
@@ -41,9 +44,8 @@ int main()
         int myBet = stoi(bet);
         myGame.Bet(myBet);
         myGame.Deal();
-        player* me = myGame.returnPlayer();
-        player* dealer = myGame.returnDealer();
-myGame.show();
+
+        myGame.show();
         cout << "The dealer has: " << endl;
         cout << "??" << endl;
         cout << dealer->hand[0]->name << " of " << dealer->hand[0]->sui << endl;
@@ -116,9 +118,8 @@ myGame.show();
                 }
             }
         }
-
         myGame.Round();
-
+cout<<"F"<<endl;
         myGame.show();
      cout << "The dealer had: " << endl;
         for (int i = 0; i < dealer->hand.size();i++)
@@ -183,11 +184,10 @@ myGame.show();
     }
 
 
-    myGame.Reset();
     cout<< "Would you like to stop playing? (Y) ";
     string choice2;
     getline(cin, choice2);
-    if (choice2 == "N")
+    if (choice2 == "Y")
         Quit = true;
     }
 

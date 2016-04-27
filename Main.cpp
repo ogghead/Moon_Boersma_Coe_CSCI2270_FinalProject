@@ -34,6 +34,7 @@ int main()
     bool Quit = false;
     while (!Quit)
     {
+        myGame.Reset();
         string bet;
         cout<<"Buy-in is 10, max bet is 1000."<<endl;
         cout<<"How much would you like to bet?"<<endl;
@@ -181,17 +182,13 @@ myGame.show();
 
 
     }
-
-
-    myGame.Reset();
     cout<< "Would you like to stop playing? (Y) ";
     string choice2;
     getline(cin, choice2);
-    if (choice2 == "N")
+    if (choice2 == "Y")
         Quit = true;
     }
 
 
     return 0;
 }
-

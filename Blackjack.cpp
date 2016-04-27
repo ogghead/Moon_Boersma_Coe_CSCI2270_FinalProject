@@ -206,7 +206,7 @@ void Blackjack::createPlayers(int playerNumber)
     for(int i = 1; i < playerNumber; i++)
     {
         player* newAI = new player;
-        newAI->orientation = rand() % 4 + 1;
+        newAI->orientation = rand() % 3 + 1;
         newAI->totalMoney = 1000;
         players.push_back(newAI);
     }

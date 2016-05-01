@@ -22,8 +22,8 @@ Blackjack::~Blackjack()
 void Blackjack::buildDeck(int deckNumber){
     for (int s = 0; s < deckNumber; s++){
 
-        for(int i=0;i<4;i++){
-            for(int j=0; j<13;j++){
+        for(int i=0;i<4;i++){//four suits
+            for(int j=0; j<13;j++){//13 cards per suit
                 card *newCard = new card;
                 newCard->suit=i;
                 if(i==0){
@@ -100,7 +100,7 @@ void Blackjack::shuffleDeck(int deckNumber){
 
 }
 
-void Blackjack::ai(player * player){
+void Blackjack::ai(player * player){//this function handles the different AIs and what they decide to do each turn
     int ori=player->orientation;
         while(player->stand==false){
             if(ori==0){
@@ -199,11 +199,11 @@ void Blackjack::createPlayers(int playerNumber)
 
     srand(time(NULL));
 
-    player* newAI = new player;
+    player* newAI = new player;//this is the dealer
     newAI->orientation = 2;
     players.push_back(newAI);
 
-    for(int i = 1; i < playerNumber; i++)
+    for(int i = 1; i < playerNumber; i++)//other AIs
     {
         player* newAI = new player;
         newAI->orientation = rand() % 3 + 1;
@@ -213,7 +213,7 @@ void Blackjack::createPlayers(int playerNumber)
 }
 
 
-vector <player*> Blackjack::returnPlayers()
+vector <player*> Blackjack::returnPlayers()//allows use in main function
 {
     return players;
 }
@@ -285,7 +285,7 @@ void Blackjack::Round(){
     }
 }
 
-void Blackjack::Reset(){
+void Blackjack::Reset(){//reset player variables for a new round
     for (int i = 0; i < players.size(); i++){
         players[i]->handValue = 0;
         players[i]->handValue = 0;
@@ -307,7 +307,7 @@ player* Blackjack::returnPlayer()
 {
     return players[0];
 }
-void Blackjack::show(){
+void Blackjack::show(){//end of round printing of hands
 for(int z=2;z< players.size();z++){
         cout<<"Player "<< z << " has: "<<endl;
     for (int i = 0; i < players[z]->hand.size();i++)

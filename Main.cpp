@@ -40,6 +40,7 @@ int main()
         string bet;
         cout<<"Buy-in is 10, max bet is 1000."<<endl;
         cout<<"How much would you like to bet?"<<endl;
+        cout<<"You have: "<< me->totalMoney << " dollars left." << endl;
         getline(cin,bet);
         int myBet = stoi(bet);
         myGame.Bet(myBet);

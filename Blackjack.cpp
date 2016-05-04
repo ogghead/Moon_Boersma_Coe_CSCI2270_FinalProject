@@ -141,17 +141,18 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     int index = deck.size() - 1;
     card* tmp = deck[index];
 
-    if (secondHand == false)
+    if (secondHand == false) //if this was the first hand
     {
         currentPlayer->hand.push_back(tmp);
-        if((tmp->value==11)&&(currentPlayer->handValue+11 > 21))
+        if((tmp->value==11)&&(currentPlayer->handValue+11 > 21)) //if the ace being 11 would bust the player
+        //than the ace would be worth 1
         {
             currentPlayer->handValue=currentPlayer->handValue+1;
         }
         else
         {
         currentPlayer->handValue=currentPlayer->handValue + tmp->value;
-         if(currentPlayer->handValue>21){
+         if(currentPlayer->handValue>21){   //if the player busts, this would force them into stand position
              currentPlayer->stand=true;
          }
         }
@@ -160,7 +161,7 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
     else
     {
         currentPlayer->hand2.push_back(tmp);
-        if((tmp->value==11)&&(currentPlayer->handValue2+11 > 21)){
+        if((tmp->value==11)&&(currentPlayer->handValue2+11 > 21)){  //same as above but with hand 2
             currentPlayer->handValue2=currentPlayer->handValue2+1;
         }else{
         currentPlayer->handValue2=currentPlayer->handValue2 + tmp->value;
@@ -170,7 +171,7 @@ void Blackjack::HitMe(player* currentPlayer, bool secondHand)//this boolean chec
          }
     }
 
-
+            //card counting math
     if (tmp->value == 2 || tmp->value == 3 || tmp->value == 4 ||
         tmp->value == 5 || tmp->value == 6)
         {
@@ -197,7 +198,7 @@ void Blackjack::createPlayers(int playerNumber)
 
     players.push_back(me);
 
-    srand(time(NULL));
+    srand(time(NULL));  // to make the decks more random than the same seed every time
 
     player* newAI = new player;//this is the dealer
     newAI->orientation = 2;
